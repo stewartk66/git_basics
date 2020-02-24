@@ -7,4 +7,7 @@
 - commit has a -m property to allow addition of message, 
 if excluded then git commit opens the editor
 
+- `diff` : changes between 2 commits
+- `log` : list history 
+
 index/staging area has files ot be committed
