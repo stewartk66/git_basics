@@ -19,3 +19,9 @@ checkout <hash> : restore the entire folder
 
 index/staging area has files ot be committed
 HEAD where you are in the history 
+
+remote : anywahere you didn't `init`
+  - remote add origin <url> : adds url as remoate named origin
+  - remote -v to verify - fetch and pull 
+- `push` : send code to remote
+- pull: get code from remoate
