@@ -6,3 +6,5 @@
 - `commit` : add changes to master
 - commit has a -m property to allow addition of message, 
 if excluded then git commit opens the editor
+
+index/staging area has files ot be committed
