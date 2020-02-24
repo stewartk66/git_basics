@@ -24,4 +24,4 @@ remote : anywahere you didn't `init`
   - `remote` add origin <url> : adds url as remoate named origin
   - `remote` -v to verify - fetch and pull 
 - `push` : send code to remote
-- pull: get code from remoate
+- `pull`: get code from remoate
