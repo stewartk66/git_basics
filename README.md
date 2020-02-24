@@ -10,4 +10,12 @@ if excluded then git commit opens the editor
 - `diff` : changes between 2 commits
 - `log` : list history 
 
+log --oneline
+log --oneline --graph -- decorate
+
+checkout <hash> file : restore a file
+checkout <hash> : restore the entire folder 
+
+
 index/staging area has files ot be committed
+HEAD where you are in the history 
