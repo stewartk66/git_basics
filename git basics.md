@@ -1,4 +1,7 @@
-
+# Git Basics
+## Configuration
+### Global changes
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~
 $ git config --global user.name "Stewart Keay"
 
@@ -25,7 +28,16 @@ credential.helper=manager
 user.name=Stewart Keay
 user.email=stewartkeay@aol.com
 core.editor=nano -w
+```
+### Local changes
+git config user.name "Stewart Keay"
+git config user.email "stewartkeay@aol.com"
 
+Use `git config user.name` or `git config user.email` to confirm
+
+
+## Create Repository
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~
 $ pwd
 /c/Users/stewa
@@ -68,14 +80,19 @@ On branch master
 No commits yet
 
 nothing to commit (create/copy files and use "git add" to track)
+```
+### nano editor commands 
+```
+nano <filename> to enter editor
+ctrl-o to save
+confirm name of file
+ctrl-x to exit 
+```
 
-
-============================================================================================
+## git Add & a basic Commit
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ nano README.md
-
-ctrl-x to exit 
-ctrl-o to save
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git add README.md
@@ -91,22 +108,26 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   README.mdstewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-$ git commit        --> goes to nano editor, enter text, ctrl-O, ctrl-x  --> comes back and displays 
+$ git commit      
 [master (root-commit) 0cdbee0] init repo first commit
  1 file changed, 5 insertions(+)
  create mode 100644 README.md
 
-============================================================================================
+* `git commit` on it's own will open the editor (nano) to allow insert of a comit message as one has not been provided in the command 
+```
 
-.git folder has all the bits and bobs from processing. This holds the version control stuff
+## .git folder
 
+The `.git` folder holds all the version control information 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics/.git (GIT_DIR!)
 $ ls
 COMMIT_EDITMSG  description  hooks/  info/  objects/
 config          HEAD         index   logs/  refs/
+```
 
-
-============================================================================================
+## git status with local change 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ nano README.md
 
@@ -119,7 +140,9 @@ Changes not staged for commit:
         modified:   README.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
-
+```
+## git status with staged change 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git add README.md
 warning: LF will be replaced by CRLF in README.md.
@@ -131,9 +154,10 @@ On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
         modified:   README.md
+```
 
-
-============================================================================================
+## Get a history list  of commands used 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ history
     1  git config --global user.name "Stewart Keay"
@@ -170,13 +194,12 @@ $ history
    32  git status
    33  git commit -m "some more info"
    34  history
+```
 
-
-============================================================================================
-
-
-git log shows HEAD
-
+## git log
+### Full Output
+`git log` defaults to HEAD
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git log
 commit 02da17f1e9019cdf0dff341c226076e7ad9d8676 (HEAD -> master)
@@ -202,9 +225,19 @@ Author: Stewart Keay <stewartkeay@aol.com>
 Date:   Mon Feb 24 17:31:46 2020 +0000
 
     init repo first commit
-
-============================================================================================
-
+```
+### Basic Output
+```
+stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
+$ git log --oneline
+02da17f (HEAD -> master) add test about index
+f77b9c8 some more info
+7784a0e add and commit
+0cdbee0 init repo first commit
+```
+## git diff 
+### File in a commit
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git diff HEAD~2 README.md
 diff --git a/README.md b/README.md
@@ -219,18 +252,9 @@ index c02ee6a..9678eeb 100644
 +if excluded then git commit opens the editor
 
 +index/staging area has files ot be committed
-
-============================================================================================
-
-stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-$ git log --oneline
-02da17f (HEAD -> master) add test about index
-f77b9c8 some more info
-7784a0e add and commit
-0cdbee0 init repo first commit
-
-============================================================================================
-
+```
+### Staged Changes 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git add README.md
 warning: LF will be replaced by CRLF in README.md.
@@ -253,10 +277,10 @@ index 9678eeb..23358b0 100644
 +- `log` : list history
 +
  index/staging area has files ot be committed
-
-
-===========================================================================
-
+```
+### Basic Command
+Using `git diff` will show all the differences in the HEAD
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ nano README.md
 
@@ -277,9 +301,14 @@ index 23358b0..755923f 100644
 +
 +
 +change not required
-
+```
+## git restore
+### Restore a file from HEAD
+Recent versions of git uses `git restore README.md`  
+Older version would require `git checkout HEAD README.md`
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-$ git restore README.md  ======= git checkout HEAD README.md
+$ git restore README.md 
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git diff
@@ -304,10 +333,9 @@ if excluded then git commit opens the editor
 - `log` : list history
 
 index/staging area has files ot be committed
-
-
-==================================================================
-
+```
+### Restore a file from a specific commit
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (
 $ git log --oneline
 d8d85ab (HEAD -> master) added diff and log
@@ -319,9 +347,9 @@ f77b9c8 some more info
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (
 $ git checkout f77b9c8 README.md
 Updated 1 path from 30a9c15
-
-=====================================================================================================================
-
+```
+### Restore a file to HEAD version
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git log --oneline
 d8d85ab (HEAD -> master) added diff and log
@@ -340,7 +368,6 @@ On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
         modified:   README.md
-
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git diff
@@ -386,7 +413,11 @@ if excluded then git commit opens the editor
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git checkout HEAD README.md
 Updated 1 path from 18466e8
+``` 
 
+## Switching HEAD to a specific commit
+Switch HEAD to a specific commit and use `git log` to check what commits are set up for this commit and also show that all commits are still available; HEAD is just pointing to a commit rather than `master` 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git checkout f77b9c8
 Note: switching to 'f77b9c8'.
@@ -427,46 +458,13 @@ $ git checkout master
 Previous HEAD position was f77b9c8 some more info
 Switched to branch 'master'
 
-
-
-
-==================================================================================================================
+```
+## Update on commands used so far 
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ history
-    1  git config --global user.name "Stewart Keay"
-    2  git config --global user.email "stewartkeay@aol.com"
-    3  git config --global core.editor "nano -w"
-    4  git config --list
-    5  pwd
-    6  dir
-    7  cd MyStuff/
-    8  mkdir git
-    9  cd git
-   10  mkdir git_basics
-   11  cd git_basics/
-   12  pwd
-   13  ls
-   14  ls -a
-   15  git init
-   16  ls -a
-   17  git status
-   18  nano README.md
-   19  nano README.md
-   20  git status
-   21  git add README.md
-   22  git status
-   23  git commit
-   24  ls
-   25  nano README.md
-   26  git status
-   27  git add README.md
-   28  git status
-   29  git commit -m "add and commit"
-   30  nano README.md
-   31  git add README.md
-   32  git status
-   33  git commit -m "some more info"
-   34  history
+   ...
+   ...
    35  ls -a
    36  cd .git
    37  ls
@@ -512,16 +510,11 @@ $ history
    77  nano Readme.md
    78  git --version
    79  history
+```
+## .gitignore file
+Search internet for gitignore <language> and get the raw version. for example `gitignore python` will identify a gitignore file that has some basic python exclusions; ignore anything that can be recreated from source   
 
-
-
-
-==========================================================================
-search for gitignore <language> and get the raw version
-
-
-==========================================================================
-
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git status
 On branch master
@@ -533,7 +526,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-$ git add README.md README.md
+$ git add README.md
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git diff --staged
@@ -600,6 +593,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ nano .gitignore
+*** Change to add *.temp files to the ignore file  ***
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ git status
@@ -610,12 +604,10 @@ Changes not staged for commit:
         modified:   .gitignore
 
 no changes added to commit (use "git add" and/or "git commit -a")
-
-stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-$ touch data/.gitkeep analysis/.gitkeep
-touch: cannot touch 'data/.gitkeep': No such file or directory
-touch: cannot touch 'analysis/.gitkeep': No such file or directory
-
+```
+## .gitkeep
+Creating a `.gitkeep` file will ensure that an empty folder is available to be committed.
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ mkdir data
 
@@ -665,9 +657,9 @@ drwxr-xr-x 1 stewa 197609   0 Feb 24 18:57 data/
 -rw-r--r-- 1 stewa 197609  16 Feb 24 18:54 temp.temp
 
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
-
-====================================================================================================
-
+```
+## History update
+```
    80  git status
    81  git add README.md README.md
    82  git diff --staged
@@ -690,22 +682,20 @@ stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
    99  git commit -m"ignore .temp file and add folders"
   100  ls -alh
   101  history
+```
+## github or bitbucket
+`bitbucket` - unlimited private repositories, limited usage overall.  
+`github` - unlimited public repositories, main usage overall.
 
-======================================================================================
-
-
-BITBUCKET
-
-======================================================================================
-
+## git remote
+### History update
+```
   102  ls
   103  git remote add origin https://github.com/stewartk66/git_basics.git
   104  git remote -v
   105  git push origin master
-
-====================================================================================
-
-if git push has a conflict then git pull will pull all the information into the workspace 
-- almost like it pulls in the origin version and combines with local to create a new version with the full history. 
-Then fixing the conflict results in a new version with the history as it is in the origin so it is then good to commit 
-as the history is intact with a new version of the file as the HEAD  
+```
+## git push and pull
+If `git push` hits a conflict then `git pull` will pull all the information into the workspace almost like it pulls in the origin version and combines with local to create a new version with the full history and both sets of changes.  
+Once the conflict is _fixed_ then fixing the conflict results in a new version with the history as it is in `origin` so it is then good to commit 
+as the history is intact with a new version of the file as the HEAD.

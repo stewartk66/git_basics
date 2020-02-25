@@ -1,3 +1,5 @@
+
+```
 stewa@LAPTOP-58OP9CKK MINGW64 ~/MyStuff/git/git_basics (master)
 $ history
     1  git config --global user.name "Stewart Keay"
@@ -119,3 +121,4 @@ $ history
   117  git add .
   118  nano git_basics_cmds.txt
   119  history
+```
